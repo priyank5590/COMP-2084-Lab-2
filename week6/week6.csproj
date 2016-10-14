@@ -43,6 +43,14 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Microsoft.AI.Agent.Intercept, Version=1.2.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.ApplicationInsights.Agent.Intercept.1.2.1\lib\net45\Microsoft.AI.Agent.Intercept.dll</HintPath>
       <Private>True</Private>
@@ -76,6 +84,8 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -94,11 +104,27 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="packages.config" />
-    <Content Include="ApplicationInsights.config">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    <Content Include="Contoso Modal.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>Contoso Modal.edmx</DependentUpon>
+      <LastGenOutput>Contoso Modal.Context.cs</LastGenOutput>
     </Content>
+    <Content Include="Contoso Modal.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>Contoso Modal.edmx</DependentUpon>
+      <LastGenOutput>Contoso Modal.cs</LastGenOutput>
+    </Content>
+    <Content Include="department-details.aspx" />
+    <Content Include="departments.aspx" />
+    <Content Include="packages.config" />
     <Content Include="Site.Master" />
+    <EntityDeploy Include="Contoso Modal.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>Contoso Modal.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Contoso Modal.edmx.diagram">
+      <DependentUpon>Contoso Modal.edmx</DependentUpon>
+    </Content>
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -108,13 +134,33 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="default.aspx" />
-    <Content Include="hello.aspx" />
     <Content Include="scripts\ai.0.22.9-build00167.js" />
     <Content Include="scripts\ai.0.22.9-build00167.min.js" />
-    <Content Include="tip.aspx" />
-    <Content Include="Web.config" />
+    <Content Include="student-details.aspx" />
+    <Content Include="students.aspx" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Contoso Modal.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Contoso Modal.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Contoso Modal.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Contoso Modal.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Contoso Modal.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Contoso Modal.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Course.cs">
+      <DependentUpon>Contoso Modal.tt</DependentUpon>
+    </Compile>
     <Compile Include="default.aspx.cs">
       <DependentUpon>default.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -122,12 +168,25 @@
     <Compile Include="default.aspx.designer.cs">
       <DependentUpon>default.aspx</DependentUpon>
     </Compile>
-    <Compile Include="hello.aspx.cs">
-      <DependentUpon>hello.aspx</DependentUpon>
+    <Compile Include="department-details.aspx.cs">
+      <DependentUpon>department-details.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="hello.aspx.designer.cs">
-      <DependentUpon>hello.aspx</DependentUpon>
+    <Compile Include="department-details.aspx.designer.cs">
+      <DependentUpon>department-details.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Department.cs">
+      <DependentUpon>Contoso Modal.tt</DependentUpon>
+    </Compile>
+    <Compile Include="departments.aspx.cs">
+      <DependentUpon>departments.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="departments.aspx.designer.cs">
+      <DependentUpon>departments.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Enrollment.cs">
+      <DependentUpon>Contoso Modal.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Site.Master.cs">
@@ -137,13 +196,26 @@
     <Compile Include="Site.Master.designer.cs">
       <DependentUpon>Site.Master</DependentUpon>
     </Compile>
-    <Compile Include="tip.aspx.cs">
-      <DependentUpon>tip.aspx</DependentUpon>
+    <Compile Include="student-details.aspx.cs">
+      <DependentUpon>student-details.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="tip.aspx.designer.cs">
-      <DependentUpon>tip.aspx</DependentUpon>
+    <Compile Include="student-details.aspx.designer.cs">
+      <DependentUpon>student-details.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Student.cs">
+      <DependentUpon>Contoso Modal.tt</DependentUpon>
+    </Compile>
+    <Compile Include="students.aspx.cs">
+      <DependentUpon>students.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="students.aspx.designer.cs">
+      <DependentUpon>students.aspx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

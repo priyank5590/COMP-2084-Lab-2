@@ -7,56 +7,54 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace week6
-{
-
-
-    public partial class tip
-    {
-
+namespace week6 {
+    
+    
+    public partial class department_details {
+        
         /// <summary>
-        /// txtAmount control.
+        /// Label1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtAmount;
-
+        protected global::System.Web.UI.WebControls.Label Label1;
+        
         /// <summary>
-        /// ddlPercent control.
+        /// txtDepartment control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlPercent;
-
+        protected global::System.Web.UI.WebControls.TextBox txtDepartment;
+        
         /// <summary>
-        /// btnCalculate control.
+        /// Label2 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnCalculate;
-
+        protected global::System.Web.UI.WebControls.Label Label2;
+        
         /// <summary>
-        /// lblTip control.
+        /// txtbudget control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblTip;
-
+        protected global::System.Web.UI.WebControls.TextBox txtbudget;
+        
         /// <summary>
-        /// lblTotal control.
+        /// Button1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblTotal;
+        protected global::System.Web.UI.WebControls.Button Button1;
     }
 }
