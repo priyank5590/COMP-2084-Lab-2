@@ -13,11 +13,41 @@ namespace week6
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (IsPostBack == false) { 
+                    // check the url for an id so we know we are adding or editing
+                    if (!string.IsNullOrEmpty(Request.QueryString["DepartmentID"]))
+                    {
+                        // get id from url
+                        Int32 DepartmentID = Convert.ToInt32(Request.QueryString["departmentID"]);
 
+
+                        // connect
+                        var conn = new contosoEntities1();
+
+
+                        // lookup the selected department
+                        var objDep = (from d in conn.Departments
+                                      where d.DepartmentID == DepartmentID
+                                      select d).FirstOrDefault();
+
+
+                        // populate the form
+                        txtDepartment.Text = objDep.Name;
+                        txtbudget.Text = objDep.Budget.ToString();
+                    }
+            }
         }
 
         protected void Button1_Click(object sender, EventArgs e)
         {
+            //check if we have an id to decide if we're adding or editing
+            Int32 DepartmentID = 0;
+
+            if(!string.IsNullOrEmpty(Request.QueryString["DepartmentID"]))
+            {
+                DepartmentID = Convert.ToInt32(Request.QueryString["departmentID"]);
+            }
+
             //connect to db
             var conn = new contosoEntities1();
 
@@ -29,7 +59,18 @@ namespace week6
             d.Budget = Convert.ToDecimal(txtbudget.Text);
 
             //save the new object from database
-            conn.Departments.Add(d);
+            if(DepartmentID == 0)
+            {
+                conn.Departments.Add(d);
+                
+            }
+
+            else
+            {
+                d.DepartmentID = DepartmentID;
+                conn.Departments.Attach(d);
+                conn.Entry(d).State = System.Data.Entity.EntityState.Modified;
+            };
             conn.SaveChanges();
 
             //redirect to department page

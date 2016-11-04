@@ -116,6 +116,7 @@
     </Content>
     <Content Include="department-details.aspx" />
     <Content Include="departments.aspx" />
+    <Content Include="js\main.js" />
     <Content Include="packages.config" />
     <Content Include="Site.Master" />
     <EntityDeploy Include="Contoso Modal.edmx">
